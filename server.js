@@ -34,8 +34,8 @@ app.use(express.urlencoded({ extended: false }));
  */
 const prodOrigin = [process.env.ORIGIN];
 const devOrigin = [`http://localhost:3000`];
-const allowedOrigins =
-  process.env.NODE_ENV === "development" ? prodOrigin : devOrigin;
+// const allowedOrigins =
+//   process.env.NODE_ENV === "development" ? prodOrigin : devOrigin;
 app.use(
   cors({
     // origin: (origin, callback) => {
@@ -44,7 +44,7 @@ app.use(
     //     callback(null, true);
     //   } else callback(new Error("Not allowed by CORS"));
     // },
-    origin: "*",
+    origin: "https://bakery-management-app.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
