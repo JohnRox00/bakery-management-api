@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
  *  cross-origin-configuration
  * prevent cross origin error and preflight error
  */
-const prodOrigin = [process.env.ORIGIN];
+const prodOrigin = [process.env.ORIGIN_1, process.env.ORIGIN_2];
 const devOrigin = [`http://localhost:5173`];
 const allowedOrigins =
   process.env.NODE_ENV === "development" ? prodOrigin : devOrigin;
