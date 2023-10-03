@@ -33,17 +33,18 @@ app.use(express.urlencoded({ extended: false }));
  * prevent cross origin error and preflight error
  */
 const prodOrigin = [process.env.ORIGIN];
-const devOrigin = [`http://localhost:${PORT}`];
+const devOrigin = [`http://localhost:3000`];
 const allowedOrigins =
   process.env.NODE_ENV === "production" ? prodOrigin : devOrigin;
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin)) {
-        console.log(origin, allowedOrigins);
-        callback(null, true);
-      } else callback(new Error("Not allowed by CORS"));
-    },
+    // origin: (origin, callback) => {
+    //   if (allowedOrigins.includes(origin)) {
+    //     console.log(origin, allowedOrigins);
+    //     callback(null, true);
+    //   } else callback(new Error("Not allowed by CORS"));
+    // },
+    origin: "true",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
