@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     credentials: true,
-    origin: true, //client host
+    origin: "https://bakery-management-app.vercel.app",
   })
 );
 app.use(cookieParser());
