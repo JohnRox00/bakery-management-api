@@ -13,12 +13,12 @@ router.post("/login", loginUserController);
 router.post("/logout", logoutUserController);
 
 //protected User route auth
-router.get("/user-auth", requireSignIn, (req, res) => {
+router.post("/user-auth", requireSignIn, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
 //protected Admin route auth
-router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
+router.post("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
