@@ -27,10 +27,25 @@ const PORT = process.env.PORT || 5000;
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+/**
+ *  cross-origin-configuration
+ * prevent cross origin error and preflight error
+ */
+const prodOrigin = [process.env.ORIGIN];
+const devOrigin = [`http://localhost:${PORT}`];
+const allowedOrigins =
+  process.env.NODE_ENV === "production" ? prodOrigin : devOrigin;
 app.use(
   cors({
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin)) {
+        console.log(origin, allowedOrigins);
+        callback(null, true);
+      } else callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
-    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(cookieParser());
