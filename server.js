@@ -33,17 +33,17 @@ app.use(express.urlencoded({ extended: false }));
  * prevent cross origin error and preflight error
  */
 const prodOrigin = [process.env.ORIGIN];
-const devOrigin = [`http://localhost:3000`];
-// const allowedOrigins =
-//   process.env.NODE_ENV === "development" ? prodOrigin : devOrigin;
+const devOrigin = [`http://localhost:5173`];
+const allowedOrigins =
+  process.env.NODE_ENV === "development" ? prodOrigin : devOrigin;
 app.use(
   cors({
-    // origin: (origin, callback) => {
-    //   if (allowedOrigins.includes(origin)) {
-    //     console.log(origin, allowedOrigins);
-    //     callback(null, true);
-    //   } else callback(new Error("Not allowed by CORS"));
-    // },
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin)) {
+        console.log(origin, allowedOrigins);
+        callback(null, true);
+      } else callback(new Error("Not allowed by CORS"));
+    },
     origin: "https://bakery-management-app.vercel.app/",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
