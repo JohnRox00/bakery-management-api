@@ -9,7 +9,7 @@ const { requireSignIn, isAdmin } = require("../middlewares/authMiddleware");
 const router = Router();
 
 router.post("/register", createUserController);
-router.get("/login", loginUserController);
+router.post("/login", loginUserController);
 router.post("/logout", logoutUserController);
 
 //protected User route auth
